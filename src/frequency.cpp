@@ -1,10 +1,11 @@
-#include "frequency.h"
+#include "../include/frequency.h"
 
+#include <cstddef>
 #include <stdexcept>
 #include <unordered_map>
 
 namespace algorithm_lab {
-
+/*Innefficient */
 int mostFrequentNaive(const std::vector<int>& values) {
     if (values.empty()) {
         throw std::invalid_argument("values must not be empty");
@@ -30,10 +31,32 @@ int mostFrequentNaive(const std::vector<int>& values) {
 
     return best_value;
 }
-
+/*Efficient */
 int mostFrequentEfficient(const std::vector<int>& values) {
+    if (values.empty()) {
+        throw std::invalid_argument("values must not be empty");
+    }
 
-    return false;
+    std::unordered_map<int, int> frequency;
+
+    for (int value : values) {
+        frequency[value]++;
+    }
+
+    int best_value = values.front();
+    int best_count = 0;
+
+    for (const auto& entry : frequency) {
+        int value = entry.first;
+        int count = entry.second;
+
+        if (count > best_count ||
+            (count == best_count && value < best_value)) {
+            best_count = count;
+            best_value = value;
+        }
+    }
+
+    return best_value;
 }
-
 }
