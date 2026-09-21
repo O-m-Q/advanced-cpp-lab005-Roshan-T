@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-#include "common.h"
-#include "duplicate.h"
-#include "frequency.h"
+#include "../include/common.h"
+#include "../include/duplicate.h"
+#include "../include/frequency.h"
 
 namespace {
 
